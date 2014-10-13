@@ -49,6 +49,9 @@ public class Registration extends HttpServlet {
 			}
 		}
         
+        writer.println("<h2>value:</h2>");
+        writer.println(req.getParameter("step"));
+        
         writer.println("</body></html>");
 		//int step = (int) req.getAttribute("step");
 		/*switch (step) {
