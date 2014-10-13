@@ -29,6 +29,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="E:/Oleg/Projects/workspace/libraries/JavaMail API 1.5.1 Release/javax.mail.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaMail API 1.5.1 Release"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
