@@ -1,6 +1,10 @@
 package localdomain.localhost;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
+import java.util.Set;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,8 +30,28 @@ public class Registration extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		int step = (int) req.getAttribute("step");
-		switch (step) {
+		PrintWriter writer = resp.getWriter();
+
+        writer.println("<html>");
+        writer.println("<head><title>Reg param</title></head>");
+        writer.println("<body><h1>show all reg form data</h1>");
+
+        
+        Map<String, String[]> mp = req.getParameterMap();
+		Set<String> ms = mp.keySet();
+		String[] ss;
+        
+        for (String s : ms) {
+			writer.println("<h3>" + s + "</h3>");
+			ss = mp.get(s);
+			for (String t : ss) {
+				writer.println(t);
+			}
+		}
+        
+        writer.println("</body></html>");
+		//int step = (int) req.getAttribute("step");
+		/*switch (step) {
 		case 1:
 			if(req.getAttribute("condition") == "accept"){
 				String email = (String) req.getAttribute("email");
@@ -53,7 +77,7 @@ public class Registration extends HttpServlet {
 
 		default:
 			break;
-		}
+		}*/
 	}
 
 }
