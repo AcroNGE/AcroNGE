@@ -34,7 +34,7 @@ public class Registration extends HttpServlet {
 		switch (step) {
 		case 1:
 			if(req.getAttribute("condition") == "accept"){
-				/*String email = (String) req.getAttribute("email");
+				String email = (String) req.getAttribute("email");
 				DBWorker dbWorker = new DBWorker();
 				try {
 					//check was registered
@@ -49,7 +49,7 @@ public class Registration extends HttpServlet {
 					req.getSession().setAttribute("error", "reg-step1|| " + e.getMessage());
 					resp.addCookie(new Cookie("error", "server error"));
 					resp.sendRedirect("../ServerError.jsp");
-				}*/
+				}
 			}
 			break;
 

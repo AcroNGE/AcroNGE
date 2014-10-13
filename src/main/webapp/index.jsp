@@ -10,7 +10,7 @@
 			<br>
 			<input name="Log On" type="submit">
 			<br>
-			<a href="registration/registration.jsp">Register new member?</a>
+			<a href="registration/registration-step1.jsp">Register new member?</a>
 		</form>
 		<a href="ServletTest1">Test creating DB</a>
 	</body>

@@ -20,6 +20,39 @@ public class DBWorker {
 	static final String USER = "AcroNGE";
 	static final String PASS = "dfdf9f2f4c6740fdb7d190c440ff8fe5";
 	
+	private boolean DoAction(TableDBS dbs){
+		Context ctx = null;
+		DataSource ds = null;
+		Connection conn = null;
+		Statement stmt = null;
+		try {
+			ctx = new InitialContext();
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/mydb");
+			conn = ds.getConnection();
+			stmt = conn.createStatement();
+			return dbs.Done(stmt);
+		} catch (NamingException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		} finally {
+			try {
+				if(ctx != null){
+					ctx.close();
+					if(conn != null){
+						conn.close();
+						if(stmt != null){
+							stmt.close();
+						}
+					}
+				}
+			} catch (NamingException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	private ResultSet Execute(String query) throws SQLException, NamingException{return Execute(query, false);}
 	
 	private ResultSet Execute(String query, boolean noReturn) throws SQLException, NamingException{
@@ -66,10 +99,10 @@ public class DBWorker {
 		return "DB " + name + " created!";
 	}
 	
-	/*public boolean ExistEmail(String email) throws SQLException, NamingException{
-		ResultSet rs = Execute("SELECT userid FROM Users WHERE email=" + email);
-		rs.beforeFirst();
-		return rs.next();
+	public boolean ExistEmail(String email){
+		SUsers sUsers = new SUsers(TableDBS.DBSAction.EE);
+		sUsers.setAttribute("email", email);
+		return DoAction(sUsers);
 	}
 	
 	public boolean ExistTryEmail(String email) throws SQLException, NamingException{
@@ -80,6 +113,6 @@ public class DBWorker {
 		else{
 			return false;
 		}
-	}*/
+	}
 
 }
