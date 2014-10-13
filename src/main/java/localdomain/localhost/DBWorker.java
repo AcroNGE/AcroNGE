@@ -53,6 +53,7 @@ public class DBWorker {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private ResultSet Execute(String query) throws SQLException, NamingException{return Execute(query, false);}
 	
 	private ResultSet Execute(String query, boolean noReturn) throws SQLException, NamingException{
@@ -105,14 +106,10 @@ public class DBWorker {
 		return DoAction(sUsers);
 	}
 	
-	public boolean ExistTryEmail(String email) throws SQLException, NamingException{
-		ResultSet rs = Execute("SELECT * FROM TryReg WHERE email=" + email);
-		if(rs){
-			
-		}
-		else{
-			return false;
-		}
+	public boolean ExistTryEmail(String email){
+		STryReg sTryReg = new STryReg(TableDBS.DBSAction.EE);
+		sTryReg.setAttribute("email", email);
+		return DoAction(sTryReg);
 	}
 
 }
