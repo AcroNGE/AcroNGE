@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
 
-/*import javax.mail.Message;
+import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;*/
+import javax.mail.internet.MimeMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
@@ -105,8 +105,8 @@ public class STryReg extends TableDBS {
 	
 	private boolean SendMessage(String FROM, String TO, String SUBJECT, Object CONTENT){
 		try{
-			//Context initCtx = new InitialContext();
-			/*Session session = (Session) initCtx.lookup("java:comp/env/mail/SendGrid");
+			Context initCtx = new InitialContext();
+			Session session = (Session) initCtx.lookup("java:comp/env/mail/SendGrid");
 			
 			Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(FROM));
@@ -115,7 +115,7 @@ public class STryReg extends TableDBS {
             message.setRecipients(Message.RecipientType.TO, to);
             message.setSubject(SUBJECT);
             message.setContent(CONTENT, "text/plain");
-            Transport.send(message);*/
+            Transport.send(message);
 			
 			return true;
 		}
