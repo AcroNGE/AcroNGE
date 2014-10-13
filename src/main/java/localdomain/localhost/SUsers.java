@@ -59,6 +59,24 @@ public class SUsers extends TableDBS {
 		}
 	}
 	
+	private int firstNunber(int a, int b){
+		return a * 3 + b + 1;
+	}
+	
+	@SuppressWarnings("unused")
+	private String enCodingPass(String pass){
+		String cp = "";
+		if(pass.length() % 2 == 1) cp += pass.charAt(pass.length() - 1);
+		int k = pass.length() - 2;
+		char a, b;
+		for(int i = 0; i < k; i+=2){
+			a = pass.charAt(i);
+			b = pass.charAt(i + 1);
+			cp += firstNunber(a / 100, b / 100) + (a % 100) + (b % 100);
+		}
+		return cp;
+	}
+	
 	@Override
 	public boolean Done(Statement statement) throws SQLException {
 		switch (action) {

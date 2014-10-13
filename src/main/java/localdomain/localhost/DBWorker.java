@@ -107,9 +107,15 @@ public class DBWorker {
 	}
 	
 	public boolean ExistTryEmail(String email){
-		STryReg sTryReg = new STryReg(TableDBS.DBSAction.EE);
-		sTryReg.setAttribute("email", email);
-		return DoAction(sTryReg);
+		STryReg tryReg = new STryReg(TableDBS.DBSAction.EE);
+		tryReg.setAttribute("email", email);
+		return DoAction(tryReg);
+	}
+	
+	public boolean AddTryEmail(String email){
+		STryReg tryReg = new STryReg(TableDBS.DBSAction.AE);
+		tryReg.setAttribute("email", email);
+		return DoAction(tryReg);
 	}
 
 }

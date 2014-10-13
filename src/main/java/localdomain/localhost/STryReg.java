@@ -90,7 +90,8 @@ public class STryReg extends TableDBS {
 		if(ExistTryEmail(statement)) return false;
 		ResultSet rs = statement.executeQuery("SELECT * FROM TryReg WHERE email='" + email + "';");
 		rs.beforeFirst();
-		String code = generatecode(30);
+		//String code = generatecode(30);
+		code = generatecode(30);
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(System.currentTimeMillis());
 		if(rs.next()){

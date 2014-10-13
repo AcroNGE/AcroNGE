@@ -1,12 +1,8 @@
 package localdomain.localhost;
 
 import java.io.IOException;
-import java.sql.SQLException;
-
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,19 +32,21 @@ public class Registration extends HttpServlet {
 			if(req.getAttribute("condition") == "accept"){
 				String email = (String) req.getAttribute("email");
 				DBWorker dbWorker = new DBWorker();
-				try {
-					//check was registered
-					if(dbWorker.ExistEmail(email)){
-						resp.sendError(HttpServletResponse.SC_CONFLICT, "Email exist");
-						return;
-					}
-					//check try registered
-					//if()
-				} catch (SQLException | NamingException e) {
-					// send server error
-					req.getSession().setAttribute("error", "reg-step1|| " + e.getMessage());
-					resp.addCookie(new Cookie("error", "server error"));
-					resp.sendRedirect("../ServerError.jsp");
+				//check was registered
+				if(dbWorker.ExistEmail(email)){
+					resp.sendError(HttpServletResponse.SC_CONFLICT, "Email exist");
+					return;
+				}
+				//check try registered
+				if(dbWorker.ExistTryEmail(email)){
+					resp.sendError(HttpServletResponse.SC_CONFLICT, "Email was tried to reg");
+					return;
+				}
+				if(dbWorker.AddTryEmail(email)){
+					resp.sendRedirect("registration-step2.jsp");
+					return;
+				} else {
+					resp.sendError(HttpServletResponse.SC_CONFLICT, "Error in email sending");
 				}
 			}
 			break;
