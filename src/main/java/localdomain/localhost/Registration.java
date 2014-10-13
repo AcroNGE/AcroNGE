@@ -30,34 +30,11 @@ public class Registration extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		PrintWriter writer = resp.getWriter();
-
-        writer.println("<html>");
-        writer.println("<head><title>Reg param</title></head>");
-        writer.println("<body><h1>show all reg form data</h1>");
-
-        
-        Map<String, String[]> mp = req.getParameterMap();
-		Set<String> ms = mp.keySet();
-		String[] ss;
-        
-        for (String s : ms) {
-			writer.println("<h3>" + s + "</h3>");
-			ss = mp.get(s);
-			for (String t : ss) {
-				writer.println(t);
-			}
-		}
-        
-        writer.println("<h2>value:</h2>");
-        writer.println(req.getParameter("step"));
-        
-        writer.println("</body></html>");
-		//int step = (int) req.getAttribute("step");
-		/*switch (step) {
+		int step = Integer.parseInt(req.getParameter("step"));
+		switch (step) {
 		case 1:
-			if(req.getAttribute("condition") == "accept"){
-				String email = (String) req.getAttribute("email");
+			if(req.getParameter("condition") == "accept"){
+				String email = (String) req.getParameter("email");
 				DBWorker dbWorker = new DBWorker();
 				//check was registered
 				if(dbWorker.ExistEmail(email)){
@@ -70,7 +47,7 @@ public class Registration extends HttpServlet {
 					return;
 				}
 				if(dbWorker.AddTryEmail(email)){
-					resp.sendRedirect("registration-step2.jsp");
+					resp.sendRedirect("registration-step2.jsp?email=" + email);
 					return;
 				} else {
 					resp.sendError(HttpServletResponse.SC_CONFLICT, "Error in email sending");
@@ -80,7 +57,7 @@ public class Registration extends HttpServlet {
 
 		default:
 			break;
-		}*/
+		}
 	}
 
 }

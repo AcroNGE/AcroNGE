@@ -36,8 +36,8 @@ public class ServletTest1 extends HttpServlet {
         writer.println("<h2>it's work</h2>");
         DBWorker dbw = new DBWorker();
         writer.println(dbw.DBcreate("TryReg"));
-        /*writer.println(dbw.DBcreate("Users"));
-        writer.println(dbw.DBcreate("Logon"));*/
+        writer.println(dbw.DBcreate("Users"));
+        writer.println(dbw.DBcreate("Logon"));
         writer.println("</body></html>");
 
     }

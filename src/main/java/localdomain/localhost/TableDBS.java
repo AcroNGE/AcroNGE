@@ -9,6 +9,8 @@ public class TableDBS {
 	
 	public enum DBSAction {EE, AE, CE, RE, EU, AU, CU, CP, LN, LF, CL};
 	
+	protected final String serverpath = "http://acronge.acronge.cloudbees.net/";
+	
 	protected DBSAction action;
 	protected String email;
 	

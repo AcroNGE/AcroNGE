@@ -101,7 +101,8 @@ public class STryReg extends TableDBS {
 			statement.executeUpdate("INSERT INTO TryReg (email, regtime, code, count) VALUES('" + email + "', " + c.getTime() + ", '" + code + "', 0);");
 		}
 		//send message with code
-		return SendMessage("registration@AcroNGE", email, "Registration", "Your registration code is: " + code);
+		String mess = "You are tried registration on AcroNGE site.\nPleace confirm you e-mail with this code: " + code + "\nOr go by this link: " + serverpath + "registration/registration-step2.jsp?email=" + email + "&code=" + code;
+		return SendMessage("registration@AcroNGE", email, "Registration", mess);
 	}
 	
 	private boolean SendMessage(String FROM, String TO, String SUBJECT, Object CONTENT){
