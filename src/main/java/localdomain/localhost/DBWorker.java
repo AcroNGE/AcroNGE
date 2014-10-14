@@ -118,4 +118,25 @@ public class DBWorker {
 		return DoAction(tryReg);
 	}
 
+	public boolean CheckTryCode(String email, String code) {
+		STryReg tryReg = new STryReg(TableDBS.DBSAction.CE);
+		tryReg.setAttribute("email", email);
+		tryReg.setAttribute("code", code);
+		return DoAction(tryReg);
+	}
+
+	public boolean ExistLogin(String login) {
+		SUsers users = new SUsers(TableDBS.DBSAction.EU);
+		users.setAttribute("login", login);
+		return DoAction(users);
+	}
+
+	public boolean AddUser(String email, String login, String pass) {
+		SUsers users = new SUsers(TableDBS.DBSAction.AU);
+		users.setAttribute("email", email);
+		users.setAttribute("login", login);
+		users.setAttribute("password", pass);
+		return DoAction(users);
+	}
+
 }
