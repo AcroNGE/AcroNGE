@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Code verification</h1>
-	<form action="Registration">
+	<form action="Registration" method="post">
 		<input type="hidden" value="2" name="step">
 		Check your e-mail and put code that you received.<br>
 		e-mail: 
